@@ -1,0 +1,19 @@
+def Martingale_System(money = 10000, initial_bet = 100, color = "red", games = 100, times = 2):
+    idx = 0 
+    money_list = []
+    bet = initial_bet
+
+    while money >= bet and idx < games:
+            idx += 1
+            win = roulette(bet, color) 
+            if win > 0:
+                money += (win-bet)
+                bet = initial_bet
+            else:
+                money += win
+                bet = bet * times
+            money_list.append(money)
+    plt.plot(range(1, idx+1), money_list)
+    print(money_list)
+    
+Martingale_System()
